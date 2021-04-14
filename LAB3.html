@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Math Game Version 3</title>
+    <style>
+        body{
+            border: 2px solid green;
+            width: 596px;
+            height: 796px;
+            font-family: sans-serif;
+            display: table;
+            text-align:center;
+        }
+        p{
+            margin:0 auto
+        }
+        .TopBar{
+            height: 70px;
+            width: 596px;
+            font-size: 40px;
+            color: chocolate;
+            font-weight: 700;
+            padding-top: 30px;
+        }
+        .Quiz{
+            height: 110px;
+            width: 596px;
+            font-size: 70px;
+            color: blue;
+            font-weight: 700;
+            padding-top: 40px;
+        }
+        .Play{
+            height: 475px;
+            width: 596px;
+            padding-top: 75px;
+        }
+        button{
+            width: 100px;
+            height: 100px;
+            border-style: none;
+        }
+        button:active{
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+        button:focus{
+            outline:none;
+        }
+    </style>
+    <script>
+        var a=Math.floor((Math.random() * 20) + 1);
+        var b=Math.floor((Math.random() * 20) + 1);
+        var c=(a+b).toString();
+        var userInput=0;
+        function newNumber(){
+            a=Math.floor((Math.random() * 20) + 1);
+            b=Math.floor((Math.random() * 20) + 1);
+            c=(a+b).toString();
+            document.getElementById("question").innerHTML = a + "+" + b + "=?";
+        }
+        function buttonPressed(buttonID){
+            userInput=Number(userInput)*10+Number(buttonID);
+            document.getElementById("question").innerHTML = a + "+" + b + "=\<span style='color: grey;'>" + userInput + "\</span>";
+        }
+        function checkAnswer() {
+            userInput=userInput.toString();
+            if(userInput===c){
+                document.getElementById("message").innerHTML = "<span style='color: green;'>Well Done</span>";
+                newNumber();
+                userInput=0;
+            }else{
+                document.getElementById("message").innerHTML = "<span style='color: red;'>Sorry! Wrong!</span>";
+                userInput=0;
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="TopBar" id="message">
+    <p>Quiz Starts!</p>
+</div>
+<div class="Quiz" id="question">
+    <script>
+        newNumber();
+    </script>
+</div>
+<div class="Play">
+    <p>
+        <button type="button" id="1" onclick="buttonPressed(this.id)" style="background: url(images/images/number1.png); background-size: contain;"></button>
+        <button type="button" id="2" onclick="buttonPressed(this.id)" style="background: url(images/images/number2.png); background-size: contain;"></button>
+        <button type="button" id="3" onclick="buttonPressed(this.id)" style="background: url(images/images/number3.png); background-size: contain;"></button>
+        <br>
+        <button type="button" id="4" onclick="buttonPressed(this.id)" style="background: url(images/images/number4.png); background-size: contain;"></button>
+        <button type="button" id="5" onclick="buttonPressed(this.id)" style="background: url(images/images/number5.png); background-size: contain;"></button>
+        <button type="button" id="6" onclick="buttonPressed(this.id)" style="background: url(images/images/number6.png); background-size: contain;"></button>
+        <br>
+        <button type="button" id="7" onclick="buttonPressed(this.id)" style="background: url(images/images/number7.png); background-size: contain;"></button>
+        <button type="button" id="8" onclick="buttonPressed(this.id)" style="background: url(images/images/number8.png); background-size: contain;"></button>
+        <button type="button" id="9" onclick="buttonPressed(this.id)" style="background: url(images/images/number9.png); background-size: contain;"></button>
+        <br>
+        <button type="button" id="0" onclick="buttonPressed(this.id)" style="background: url(images/images/number0.png); background-size: contain;"></button>
+        <button type="button" onclick="checkAnswer()" style="background: url(images/images/enter.png); background-size: contain;"></button>
+    </p>
+</div>
+
+</body>
+</html>
